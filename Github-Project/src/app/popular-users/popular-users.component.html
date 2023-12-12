@@ -1,0 +1,45 @@
+<div class="flex mt-24 border-b-2 border-black">
+  <div class="text-left w-full">
+    <h3 class="font-medium">Github most popular users</h3>
+  </div>
+  <div class="flex items-center">
+    <button
+      class="material-icons w-12 hover:text-blue-400 active:text-blue-500"
+      (click)="toggleView(true)"
+    >
+      view_list
+    </button>
+    <button
+      class="material-icons hover:text-blue-400 active:text-blue-500"
+      (click)="toggleView(false)"
+    >
+      grid_view
+    </button>
+  </div>
+</div>
+
+<section class="mt-4 flex flex-col border-2 border-black">
+  <ng-container *ngIf="isListView; else gridView">
+    <div
+      *ngFor="let column of columns"
+      class="border-b-2 w-full border-black p-3"
+      [style.backgroundColor]="column.bgColor"
+    >
+      <h2>{{ column.title }}</h2>
+      <p>{{ column.text }}</p>
+    </div>
+  </ng-container>
+
+  <ng-template #gridView>
+    <div class="flex flex-wrap w-full">
+      <div
+        *ngFor="let column of columns"
+        class="w-1/2 border-b-2 border-black p-3"
+        [style.backgroundColor]="column.bgColor"
+      >
+        <h2>{{ column.title }}</h2>
+        <p>{{ column.text }}</p>
+      </div>
+    </div>
+  </ng-template>
+</section>
