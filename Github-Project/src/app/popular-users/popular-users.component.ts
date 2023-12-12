@@ -1,15 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Octokit } from '@octokit/rest';
+import { User } from '../shared/models/users-interface';
+import { UsersService } from '../shared/services/users.service';
 
 @Component({
   selector: 'app-popular-users',
   templateUrl: './popular-users.component.html',
   styleUrls: ['./popular-users.component.css'],
 })
-export class PopularUsersComponent {
+export class PopularUsersComponent implements OnInit {
   isListView = true;
+  popularUsers: User[] = [];
 
-  constructor() {
+  constructor(private usersService: UsersService) {
+    this.initializeOutkit();
+  }
+
+  ngOnInit() {
     this.initializeOutkit();
   }
 
@@ -19,12 +26,9 @@ export class PopularUsersComponent {
     });
 
     try {
-      const response = await octokit.request('GET /user', {
-        headers: {
-          'X-GitHub-Api-Version': '2022-11-28',
-        },
-      });
-      console.log('User data', response.data);
+      const response = await octokit.request('GET /users');
+      this.popularUsers = response.data;
+      console.log('Most Popular Users:', this.popularUsers);
     } catch (error) {
       console.error('Error fetching user data:', error);
     }

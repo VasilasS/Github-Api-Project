@@ -43,3 +43,13 @@
     </div>
   </ng-template>
 </section>
+
+<div *ngFor="let user of popularUsers">
+  <img [src]="user.avatar_url" alt="User Avatar" width="50" height="50" />
+  <a [routerLink]="['/user', user.login]">{{ user.login }}</a>
+  <p>Type: {{ user.type }}</p>
+  <p *ngIf="user.repos.length > 0">
+    Repos: {{ user.repos.slice(0, 3).join(", ") }}
+  </p>
+  <p *ngIf="user.repos.length === 0">No Repositories</p>
+</div>
