@@ -12,26 +12,16 @@ export class PopularUsersComponent implements OnInit {
   isListView = true;
   popularUsers: User[] = [];
 
-  constructor(private usersService: UsersService) {
-    this.initializeOutkit();
+  constructor(private usersService: UsersService) {}
+
+  ngOnInit(): void {
+    this.loadUsers();
   }
 
-  ngOnInit() {
-    this.initializeOutkit();
-  }
-
-  async initializeOutkit() {
-    const octokit = new Octokit({
-      auth: 'Token',
+  loadUsers() {
+    this.usersService.getUsers().subscribe((data) => {
+      this.popularUsers = data;
     });
-
-    try {
-      const response = await octokit.request('GET /users');
-      this.popularUsers = response.data;
-      console.log('Most Popular Users:', this.popularUsers);
-    } catch (error) {
-      console.error('Error fetching user data:', error);
-    }
   }
 
   columns = [
