@@ -18,38 +18,59 @@
   </div>
 </div>
 
-<section class="mt-4 flex flex-col border-2 border-black">
+<section class="mt-4">
   <ng-container *ngIf="isListView; else gridView">
-    <div
-      *ngFor="let column of columns"
-      class="border-b-2 w-full border-black p-3"
-      [style.backgroundColor]="column.bgColor"
-    >
-      <h2>{{ column.title }}</h2>
-      <p>{{ column.text }}</p>
+    <div *ngFor="let user of popularUsers" class="flex justify-between">
+      <div class="flex">
+        <div>
+          <img
+            [src]="user.avatar_url"
+            alt="User Avatar"
+            width="200"
+            height="200"
+          />
+        </div>
+        <div class="text-blue-700 text">
+          <div>{{ user.login }}</div>
+          <div>{{ user.type }}</div>
+        </div>
+      </div>
+      <!-- <div>
+        <a [routerLink]="['/user', user.login]">{{ user.login }}</a>
+        <p *ngIf="user.repos?.length > 0">
+          Repos: {{ user.repos.slice(0, 3).join(", ") }}
+        </p>
+        <p *ngIf="user.repos?.length === 0">No Repositories</p>
+      </div> -->
+      <div class="mr-[10%]">
+        <div class="text-2xl">User Repos</div>
+        <div class="text-blue-600 underline underline-offset-[6px] text-xl">
+          <div><a href="{{ user.repos }}">Normal repo name</a></div>
+          <div><a href="{{ user.repo_url }}">A bit longer repo name</a></div>
+          <div>
+            <a href="{{ user.events_url }}">Very long repo name to display</a>
+          </div>
+        </div>
+      </div>
     </div>
   </ng-container>
 
   <ng-template #gridView>
-    <div class="flex flex-wrap w-full">
-      <div
-        *ngFor="let column of columns"
-        class="w-1/2 border-b-2 border-black p-3"
-        [style.backgroundColor]="column.bgColor"
-      >
-        <h2>{{ column.title }}</h2>
-        <p>{{ column.text }}</p>
+    <div class="w-full border-black">
+      <div *ngFor="let user of popularUsers">
+        <img
+          [src]="user.avatar_url"
+          alt="User Avatar"
+          width="100"
+          height="100"
+        />
+        {{ user.login }}
+        <!-- <a [routerLink]="['/user', user.login]">{{ user.login }}</a> -->
+        <p *ngIf="user.repos?.length > 0">
+          Repos: {{ user.repos.slice(0, 3).join(", ") }}
+        </p>
+        <p *ngIf="user.repos?.length === 0">No Repositories</p>
       </div>
     </div>
   </ng-template>
-</section>  
-
-<div *ngFor="let user of popularUsers">
-  {{user.login}}
-  <img [src]="user.avatar_url" alt="User Avatar" width="50" height="50">
-  <!-- <a [routerLink]="['/user', user.login]">{{ user.login }}</a> -->
-  <p *ngIf="user.repos?.length > 0">
-    Repos: {{ user.repos.slice(0, 3).join(", ") }}
-  </p>
-  <p *ngIf="user.repos?.length === 0">No Repositories</p>
-</div>
+</section>

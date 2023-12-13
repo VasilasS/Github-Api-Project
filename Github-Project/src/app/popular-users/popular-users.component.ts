@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Octokit } from '@octokit/rest';
 import { User } from '../shared/models/users-interface';
 import { UsersService } from '../shared/services/users.service';
 
@@ -23,13 +22,6 @@ export class PopularUsersComponent implements OnInit {
       this.popularUsers = data;
     });
   }
-
-  columns = [
-    { title: 'Column 1', text: 'Some text..', bgColor: '#aaa' },
-    { title: 'Column 2', text: 'Some text..', bgColor: '#bbb' },
-    { title: 'Column 1', text: 'Some text..', bgColor: '#aaa' },
-    { title: 'Column 2', text: 'Some text..', bgColor: '#bbb' },
-  ];
 
   toggleView(isListView: boolean) {
     this.isListView = isListView;
