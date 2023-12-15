@@ -1,9 +1,10 @@
-<form class="">
+<form class="" (ngSubmit)="onSearch(searchQuery.value)">
   <div class="text-center mt-12">
     <input
       type="text"
       placeholder="Search user from Github"
-      class="border-b-2 border-black placeholder:text-sm"
+      class="border-b-2 border-black placehol der:text-sm"
+      #searchQuery
     />
     <button
       type="submit"
