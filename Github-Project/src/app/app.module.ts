@@ -7,6 +7,7 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import { HeaderComponent } from './header/header.component';
 import { PopularUsersComponent } from './popular-users/popular-users.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CurrentUserComponent } from './current-user/current-user.component';
 
 @NgModule({
   declarations: [
@@ -14,13 +15,10 @@ import { HttpClientModule } from '@angular/common/http';
     SearchBarComponent,
     HeaderComponent,
     PopularUsersComponent,
+    CurrentUserComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
