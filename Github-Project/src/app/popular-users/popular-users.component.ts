@@ -26,4 +26,10 @@ export class PopularUsersComponent implements OnInit {
   toggleView(isListView: boolean) {
     this.isListView = isListView;
   }
+  searchUsers() {
+    this.usersService.getSearchUser('Aniket965').subscribe((data) => {
+      console.log(data)
+      this.popularUsers = data.items;
+    });
+  }
 }

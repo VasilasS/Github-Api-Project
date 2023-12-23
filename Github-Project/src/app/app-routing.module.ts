@@ -5,7 +5,7 @@ import { PopularUsersComponent } from './popular-users/popular-users.component';
 
 const routes: Routes = [
   { path: 'users', component: PopularUsersComponent },
-  { path: 'users/:id', component: CurrentUserComponent },
+  { path: 'user/:login', component: CurrentUserComponent },
 ];
 
 @NgModule({

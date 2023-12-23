@@ -1,3 +1,14 @@
+<div class="text-center mt-12">
+  <input type="text" placeholder="Search user from Github" />
+  <button
+    type="submit"
+    class="bg-blue-500 px-2 border-2 border-b-2 border-black"
+    (click)="searchUsers()"
+  >
+    Find
+  </button>
+</div>
+
 <div class="flex mt-24 border-b-2 border-black">
   <div class="text-left w-full">
     <h3 class="font-medium">Github most popular users</h3>
@@ -23,12 +34,13 @@
     <div *ngFor="let user of popularUsers" class="flex justify-between">
       <div class="flex">
         <div>
-          <img
-            [src]="user.avatar_url"
-            alt="User Avatar"
-            width="200"
-            height="200"
-          />
+          <a [routerLink]="['/user', user.login]"
+            ><img
+              [src]="user.avatar_url"
+              alt="User Avatar"
+              width="200"
+              height="200"
+          /></a>
         </div>
         <div class="text-blue-700 text">
           <div>{{ user.login }}</div>

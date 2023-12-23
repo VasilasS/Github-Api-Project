@@ -17,4 +17,8 @@ export class UsersService {
   public getCurrentUser(id: number) {
     return this.http.get<CurrentUser[]>(`https://api.github.com/users/${id}`);
   }
+
+  public getSearchUser(name: string) {
+    return this.http.get<any>(`https://api.github.com/search/users?q=${name}`);
+  }
 }
