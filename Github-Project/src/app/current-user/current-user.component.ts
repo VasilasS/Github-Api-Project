@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../shared/services/users.service';
 import { CurrentUser } from '../shared/models/currentUser-interface';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-current-user',
@@ -8,16 +9,25 @@ import { CurrentUser } from '../shared/models/currentUser-interface';
   styleUrl: './current-user.component.css',
 })
 export class CurrentUserComponent implements OnInit {
-  currentUser: CurrentUser[] = [];
+  // currentUser: CurrentUser[] = [];
+  currentUser: CurrentUser;
 
-  constructor(private currentUserService: UsersService) {}
+  constructor(
+    private currentUserService: UsersService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.loadUser;
+    this.route.params.subscribe((params) => {
+      const login = params['login'];
+      console.log('params ', login);
+      this.loadUser(login);
+    });
   }
 
-  loadUser(id: number): void {
-    this.currentUserService.getCurrentUser(id).subscribe((data) => {
+  loadUser(login: string): void {
+    console.log(login);
+    this.currentUserService.getCurrentUser(login).subscribe((data) => {
       this.currentUser = data;
     });
   }

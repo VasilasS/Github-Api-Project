@@ -4,6 +4,7 @@ import { CurrentUserComponent } from './current-user/current-user.component';
 import { PopularUsersComponent } from './popular-users/popular-users.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/users', pathMatch: 'full' },
   { path: 'users', component: PopularUsersComponent },
   { path: 'user/:login', component: CurrentUserComponent },
 ];

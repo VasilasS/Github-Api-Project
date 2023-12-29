@@ -14,11 +14,15 @@ export class UsersService {
     return this.http.get<User[]>('https://api.github.com/users');
   }
 
-  public getCurrentUser(id: number) {
-    return this.http.get<CurrentUser[]>(`https://api.github.com/users/${id}`);
+  
+  public getCurrentUser(login: string) {
+    console.log(login);
+    return this.http.get<CurrentUser>(`https://api.github.com/users/${login}`);
   }
 
+
   public getSearchUser(name: string) {
+    //აი აქ, name- რომ წერია მოვა ის ინფუთში ჩაწერილი ტექსტი 
     return this.http.get<any>(`https://api.github.com/search/users?q=${name}`);
   }
 }

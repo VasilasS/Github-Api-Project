@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../shared/models/users-interface';
 import { UsersService } from '../shared/services/users.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-popular-users',
@@ -10,6 +11,8 @@ import { UsersService } from '../shared/services/users.service';
 export class PopularUsersComponent implements OnInit {
   isListView = true;
   popularUsers: User[] = [];
+
+  search = new FormControl(''); 
 
   constructor(private usersService: UsersService) {}
 
@@ -26,10 +29,16 @@ export class PopularUsersComponent implements OnInit {
   toggleView(isListView: boolean) {
     this.isListView = isListView;
   }
+
+
   searchUsers() {
-    this.usersService.getSearchUser('Aniket965').subscribe((data) => {
+//ინფუთში რასაც ჩავწერდით search ფორმკონტროლიდან შეგვეძლო ამოძვრენა იმ ინფორმაციის
+//ხოდა ამოვიღეთ ამ ფორმ კონტროლიდან მნიშვნელობა და ეხლა უკვე სერვისის მეთოდს ვაწვდით
+//ინფუთში ჩაწერილ ტექსტს
+    this.usersService.getSearchUser(this.search.value).subscribe((data) => {
       console.log(data)
       this.popularUsers = data.items;
+      // this.popularUsers = this.popularUsers.slice(0, 3);
     });
   }
 }

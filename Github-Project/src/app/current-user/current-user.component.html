@@ -1,5 +1,12 @@
-<!-- <div *ngFor="let user of currentUser">
-  {{ user.avatar_url }}
-  {{ user.id }}
-  {{ user.bio }}
-</div> -->
+<div>
+  <img [src]="currentUser?.avatar_url" />
+</div>
+<div>
+  {{ currentUser?.id }}
+</div>
+<div>
+  {{ currentUser?.name }}
+</div>
+<div>
+  {{ currentUser?.email }}
+</div>

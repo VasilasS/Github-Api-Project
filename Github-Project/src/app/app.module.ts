@@ -8,6 +8,7 @@ import { HeaderComponent } from './header/header.component';
 import { PopularUsersComponent } from './popular-users/popular-users.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CurrentUserComponent } from './current-user/current-user.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { CurrentUserComponent } from './current-user/current-user.component';
     PopularUsersComponent,
     CurrentUserComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
